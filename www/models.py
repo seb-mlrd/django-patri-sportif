@@ -31,7 +31,10 @@ class sportSite(models.Model):
     code_postal = models.CharField(max_length=10)
     longitude = models.FloatField()
     latitude = models.FloatField()
-    informations_d_acces_en_transport_en_commun = models.TextField()
+    informations_d_acces_en_transport_en_commun = models.TextField(
+        null=True,
+        blank=True
+    )
     appellation = models.CharField(max_length=200)
     typologie = models.ManyToManyField(Typo, blank=True)
     denomination = models.ManyToManyField(Denomination, blank=True)
@@ -42,7 +45,12 @@ class sportSite(models.Model):
     credits = models.CharField(max_length=200)
     url_image = models.URLField()
     adresse_com = models.CharField(max_length=200)
-    site_olympique = models.ForeignKey(site, on_delete=models.CASCADE)
+    site_olympique = models.ForeignKey(
+        site,
+        on_delete=models.CASCADE,
+        null=True,
+        blank=True
+    )
     
     
     
