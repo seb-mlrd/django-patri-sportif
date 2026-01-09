@@ -1,0 +1,131 @@
+{% extends "base.html" %}
+{% block content %}
+
+<!-- 🚗 VOITURE SVG -->
+<svg
+    width="20vw"
+    viewBox="0 0 500 200"
+    xmlns="http://www.w3.org/2000/svg"
+    style="
+        position: fixed;
+        top: 20px;
+        left: 20px;
+        min-width: 200px;
+        max-width: 300px;
+        z-index: 1000;
+        filter: drop-shadow(0px 10px 15px rgba(0,0,0,0.3));
+        pointer-events: none;
+    "
+>
+    <defs>
+        <linearGradient id="bodyGradient" x1="0%" y1="0%" x2="100%" y2="0%">
+            <stop offset="0%" style="stop-color:#333;stop-opacity:1" />
+            <stop offset="50%" style="stop-color:#666;stop-opacity:1" />
+            <stop offset="100%" style="stop-color:#111;stop-opacity:1" />
+        </linearGradient>
+        <linearGradient id="glassGradient" x1="0%" y1="0%" x2="0%" y2="100%">
+            <stop offset="0%" style="stop-color:#222;stop-opacity:1" />
+            <stop offset="100%" style="stop-color:#444;stop-opacity:1" />
+        </linearGradient>
+    </defs>
+
+    <ellipse cx="250" cy="180" rx="230" ry="15" fill="rgba(0,0,0,0.2)" />
+
+    <path d="M50,160 
+             L40,150 
+             C40,150 30,140 60,120 
+             C90,100 150,70 250,70 
+             C350,70 420,90 450,110 
+             C480,130 485,150 480,160 
+             L470,170 L50,170 Z"
+          fill="url(#bodyGradient)" />
+
+    <path d="M160,85 
+             C200,75 300,75 360,95 
+             L350,115 L170,115 Z"
+          fill="url(#glassGradient)" opacity="0.8" />
+
+    <path d="M60,135 Q70,130 90,135"
+          stroke="#00f2ff" stroke-width="3" fill="none" />
+
+    <circle cx="120" cy="160" r="35" fill="#111" stroke="#333" stroke-width="5" />
+    <circle cx="120" cy="160" r="20" fill="#222" />
+
+    <circle cx="390" cy="160" r="35" fill="#111" stroke="#333" stroke-width="5" />
+    <circle cx="390" cy="160" r="20" fill="#222" />
+
+    <path d="M155,170 L355,170" stroke="#000" stroke-width="4" />
+    <path d="M40,145 L20,135 L60,140" fill="#111" />
+</svg>
+<!-- 🚗 FIN VOITURE -->
+
+<div class="container py-5">
+    <div class="text-center mb-5">
+        <h1 class="fw-bold text-uppercase display-5">
+            🏆 Sites Sportifs
+        </h1>
+        <p class="text-muted fs-5">
+            Découvrez les infrastructures sportives près de chez vous
+        </p>
+    </div>
+
+    <div class="row g-5">
+        {% for site in sport_sites %}
+            <div class="col-lg-4 col-md-6">
+                <div class="card h-100 border-0 shadow-lg">
+                    <div class="position-relative">
+                        <img src="{{ site.url_image }}"
+                             class="card-img-top"
+                             alt="{{ site.appellation }}"
+                             style="height: 230px; object-fit: cover;">
+                    </div>
+
+                    <div class="card-body d-flex flex-column">
+                        <h5 class="card-title fw-bold text-uppercase">
+                            {{ site.appellation }}
+                        </h5>
+
+                        <p class="card-text text-muted small mb-4">
+                            📍 {{ site.adresse_com }}
+                        </p>
+
+                        <a href="#"
+                           class="btn btn-danger btn-lg mt-auto fw-semibold text-uppercase">
+                            Voir les détails
+                        </a>
+                    </div>
+                </div>
+            </div>
+        {% endfor %}
+    </div>
+
+    <nav class="mt-5">
+        <ul class="pagination pagination-lg justify-content-center">
+            {% if page_obj.has_previous %}
+                <li class="page-item">
+                    <a class="page-link fw-bold" href="?page=1">⏮</a>
+                </li>
+                <li class="page-item">
+                    <a class="page-link fw-bold" href="?page={{ page_obj.previous_page_number }}">◀</a>
+                </li>
+            {% endif %}
+
+            <li class="page-item active">
+                <span class="page-link fw-bold">
+                    {{ page_obj.number }} / {{ page_obj.paginator.num_pages }}
+                </span>
+            </li>
+
+            {% if page_obj.has_next %}
+                <li class="page-item">
+                    <a class="page-link fw-bold" href="?page={{ page_obj.next_page_number }}">▶</a>
+                </li>
+                <li class="page-item">
+                    <a class="page-link fw-bold" href="?page={{ page_obj.paginator.num_pages }}">⏭</a>
+                </li>
+            {% endif %}
+        </ul>
+    </nav>
+</div>
+
+{% endblock %}
