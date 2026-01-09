@@ -157,6 +157,57 @@
           Découvrez les infrastructures sportives près de chez vous
         </p>
       </div>
+      <svg
+  xmlns="http://www.w3.org/2000/svg"
+  width="20vw"
+  height="20vw"
+  viewBox="0 0 200 200"
+  style="position:absolute; right:0; bottom:0; pointer-events:none; z-index:10;"
+>
+  <style>
+    .scene {
+      transform-origin: 50% 50%;
+      transform-style: preserve-3d;
+      animation: skater-spin-3d 3s linear infinite;
+    }
+
+    @keyframes skater-spin-3d {
+      from {
+        transform: perspective(600px) rotateY(0deg);
+      }
+      to {
+        transform: perspective(600px) rotateY(360deg);
+      }
+    }
+  </style>
+
+  <!-- Groupe qui tourne en "3D" -->
+  <g class="scene">
+    <g fill="none" stroke="#111827" stroke-width="4" stroke-linecap="round" stroke-linejoin="round">
+      <!-- Jambe de soutien -->
+      <path d="M110 140 L100 175 L90 190" />
+      <!-- Jambe levée arrière -->
+      <path d="M110 140 L150 120 L175 115" />
+      <!-- Patin pied de soutien -->
+      <path d="M87 190 Q80 192 78 195 L105 195" />
+      <!-- Patin pied arrière -->
+      <path d="M170 115 Q182 116 185 120 L160 120" />
+      <!-- Buste -->
+      <path d="M110 140 Q115 120 115 100 Q115 85 110 75" />
+      <!-- Bras avant -->
+      <path d="M112 115 L80 95 L65 80" />
+      <!-- Bras arrière -->
+      <path d="M115 110 L140 85 L150 70" />
+      <!-- Tête -->
+      <circle cx="108" cy="65" r="10" />
+      <!-- Jupe / tenue sportive -->
+      <path d="M110 120 L80 130 L120 135 Z" fill="#3B82F6" stroke="#1D4ED8" />
+    </g>
+  </g>
+
+  <!-- Ombre au sol (fixe) -->
+  <ellipse cx="105" cy="198" rx="45" ry="4" fill="#9CA3AF" opacity="0.4" />
+</svg>
       {% block content %} {% endblock %}
     </div>
   </body>
