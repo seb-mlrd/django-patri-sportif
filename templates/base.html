@@ -1,17 +1,163 @@
-{% load static %}
-<!DOCTYPE html>
+{% load static %} <!DOCTYPE html>
 <html lang="en">
-<head>
-    <link rel="stylesheet" href="{% static 'css/style.css'%}">
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <head>
+    <link rel="stylesheet" href="{% static 'css/style.css'%}" />
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Base</title>
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/5.3.8/css/bootstrap.min.css" integrity="sha512-2bBQCjcnw658Lho4nlXJcc6WkV/UxpE/sAokbXPxQNGqmNdQrWqtw26Ns9kFF/yG792pKR1Sx8/Y1Lf1XN4GKA==" crossorigin="anonymous" referrerpolicy="no-referrer" />
-</head>
-<body>
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/5.3.8/css/bootstrap.min.css"
+      integrity="sha512-2bBQCjcnw658Lho4nlXJcc6WkV/UxpE/sAokbXPxQNGqmNdQrWqtw26Ns9kFF/yG792pKR1Sx8/Y1Lf1XN4GKA=="
+      crossorigin="anonymous"
+      referrerpolicy="no-referrer"
+    />
+  </head>
+  <body>
     <div class="container">
-        {% block content %}
-        {% endblock %}
+      <svg
+        width="20vw"
+        viewBox="0 0 600 250"
+        xmlns="http://www.w3.org/2000/svg"
+        style="
+          position: absolute;
+          top: 20px;
+          left: 20px;
+          min-width: 250px;
+          z-index: 1000;
+        "
+      >
+        <defs>
+          <linearGradient id="carBlue" x1="0%" y1="0%" x2="100%" y2="0%">
+            <stop offset="0%" style="stop-color: #1a3a5a; stop-opacity: 1" />
+            <stop offset="50%" style="stop-color: #2a5a8a; stop-opacity: 1" />
+            <stop offset="100%" style="stop-color: #0f2030; stop-opacity: 1" />
+          </linearGradient>
+          <pattern
+            id="carbonFiber"
+            x="0"
+            y="0"
+            width="4"
+            height="4"
+            patternUnits="userSpaceOnUse"
+          >
+            <path d="M0 0L4 4M0 4L4 0" stroke="#222" stroke-width="0.5" />
+            <rect width="4" height="4" fill="#111" fill-opacity="0.5" />
+          </pattern>
+          <style>
+            .wheel {
+              animation: spin 0.4s linear infinite;
+              transform-origin: center;
+            }
+            @keyframes spin {
+              from {
+                transform: rotate(0deg);
+              }
+              to {
+                transform: rotate(360deg);
+              }
+            }
+            .neon-glow {
+              filter: drop-shadow(0 0 5px #00f2ff);
+            }
+          </style>
+        </defs>
+        <ellipse cx="300" cy="210" rx="260" ry="15" fill="rgba(0,0,0,0.4)" />
+        <path
+          d="M80,190 L520,190 L530,205 L70,205 Z"
+          fill="url(#carbonFiber)"
+        />
+        <path
+          d="M70,180 L60,160 C60,160 70,120 150,110 C200,105 300,90 450,120 C500,130 540,150 540,185 L520,195 L80,195 Z"
+          fill="url(#carBlue)"
+          stroke="#000"
+          stroke-width="1"
+        />
+        <path
+          d="M280,135 L400,135 C420,135 440,150 430,175 L260,175 Z"
+          fill="#0b1a2a"
+        />
+        <path d="M280,135 L400,135 L380,165 Z" fill="url(#carbonFiber)" />
+        <path
+          d="M220,110 C280,100 380,105 430,130 L400,145 L210,145 Z"
+          fill="#050505"
+          opacity="0.9"
+          stroke="#1a3a5a"
+        />
+        <path
+          d="M500,135 L560,120 L570,125 L510,145 Z"
+          fill="url(#carbonFiber)"
+          stroke="#000"
+        />
+        <rect x="530" y="145" width="5" height="40" fill="#111" />
+        <g transform="translate(420, 100)">
+          <circle cx="0" cy="10" r="12" fill="#333" stroke="#000" />
+          <circle cx="0" cy="10" r="6" fill="#111" />
+          <circle cx="25" cy="10" r="12" fill="#333" stroke="#000" />
+          <circle cx="25" cy="10" r="6" fill="#111" />
+        </g>
+        <path
+          class="neon-glow"
+          d="M85,165 L120,160"
+          stroke="#00f2ff"
+          stroke-width="4"
+          stroke-linecap="round"
+        />
+        <path
+          class="neon-glow"
+          d="M90,175 L110,172"
+          stroke="#00f2ff"
+          stroke-width="2"
+          stroke-linecap="round"
+        />
+        <g class="wheel" style="transform-box: fill-box">
+          <circle
+            cx="150"
+            cy="190"
+            r="42"
+            fill="#C0C0C0"
+            stroke="#222"
+            stroke-width="4"
+          />
+          <circle
+            cx="150"
+            cy="190"
+            r="35"
+            fill="none"
+            stroke="url(#carbonFiber)"
+            stroke-width="8"
+            stroke-dasharray="10,5"
+          />
+          <circle cx="150" cy="190" r="5" fill="#444" />
+        </g>
+        <g class="wheel" style="transform-box: fill-box">
+          <circle
+            cx="450"
+            cy="190"
+            r="42"
+            fill="#C0C0C0"
+            stroke="#222"
+            stroke-width="4"
+          />
+          <circle
+            cx="450"
+            cy="190"
+            r="35"
+            fill="none"
+            stroke="url(#carbonFiber)"
+            stroke-width="8"
+            stroke-dasharray="10,5"
+          />
+          <circle cx="450" cy="190" r="5" fill="#444" />
+        </g>
+      </svg>
+      <div class="text-center mb-5 mt-5">
+        <h1 class="fw-bold text-uppercase display-5">🏆 Sites Sportifs</h1>
+        <p class="text-muted fs-5">
+          Découvrez les infrastructures sportives près de chez vous
+        </p>
+      </div>
+      {% block content %} {% endblock %}
     </div>
-</body>
+  </body>
 </html>

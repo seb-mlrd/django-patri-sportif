@@ -15,4 +15,9 @@ class SportSiteList(ListView):
     context_object_name = 'sport_sites'
     paginate_by = 12
     ordering = ['appellation']
+
+class SportSiteDetail(DetailView):
+    model = sportSite
+    template_name = 'site_detail.html'
+    context_object_name = 'sport_site'
      

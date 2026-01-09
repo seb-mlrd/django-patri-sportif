@@ -1,0 +1,135 @@
+{% extends "base.html" %}
+{% block content %}
+
+<div class="container py-5">
+
+    <!-- IMAGE + TITRE -->
+    <div class="row mb-5 align-items-center">
+        <div class="col-lg-6 mb-4 mb-lg-0">
+            <img src="{{ sport_site.url_image }}"
+                 alt="{{ sport_site.appellation }}"
+                 class="img-fluid rounded shadow-lg w-100"
+                 style="max-height: 400px; object-fit: cover;">
+        </div>
+
+        <div class="col-lg-6">
+            <span class="badge bg-danger text-uppercase mb-3">
+                Site sportif emblématique
+            </span>
+
+            <h1 class="fw-bold text-uppercase display-6 mt-2">
+                {{ sport_site.appellation }}
+            </h1>
+
+            <p class="fs-5 text-muted mt-3">
+                📍 {{ sport_site.adresse_com }}<br>
+                {{ sport_site.code_postal }} – {{ sport_site.commune }} ({{ sport_site.departement }})
+            </p>
+
+            {% if sport_site.site_olympique %}
+                <span class="badge bg-dark fs-6 mt-2">
+                    🏅 Site olympique – {{ sport_site.site_olympique.name }}
+                </span>
+            {% endif %}
+        </div>
+    </div>
+
+    <!-- INFOS RAPIDES -->
+    <div class="row mb-5">
+        <div class="col-md-4">
+            <div class="card shadow-sm border-0 h-100">
+                <div class="card-body">
+                    <h5 class="fw-bold text-uppercase mb-3">🏗 Construction</h5>
+                    <p class="mb-1"><strong>Période :</strong> {{ sport_site.periode_de_construction }}</p>
+                    <p class="mb-0"><strong>Datation :</strong> {{ sport_site.datation }}</p>
+                </div>
+            </div>
+        </div>
+
+        <div class="col-md-4">
+            <div class="card shadow-sm border-0 h-100">
+                <div class="card-body">
+                    <h5 class="fw-bold text-uppercase mb-3">🏟 Typologie</h5>
+                    {% for typo in sport_site.typologie.all %}
+                        <span class="badge bg-secondary mb-1">{{ typo.name }}</span>
+                    {% empty %}
+                        <p class="text-muted">Non renseigné</p>
+                    {% endfor %}
+                </div>
+            </div>
+        </div>
+
+        <div class="col-md-4">
+            <div class="card shadow-sm border-0 h-100">
+                <div class="card-body">
+                    <h5 class="fw-bold text-uppercase mb-3">📜 Dénomination</h5>
+                    {% for denom in sport_site.denomination.all %}
+                        <span class="badge bg-secondary mb-1">{{ denom.name }}</span>
+                    {% empty %}
+                        <p class="text-muted">Non renseigné</p>
+                    {% endfor %}
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- HISTORIQUE -->
+    <div class="card shadow-lg border-0 mb-5">
+        <div class="card-body">
+            <h3 class="fw-bold text-uppercase mb-3">
+                📖 Historique & Description
+            </h3>
+            <p class="fs-6 text-muted" style="line-height: 1.8;">
+                {{ sport_site.historique_et_description | linebreaks }}
+            </p>
+        </div>
+    </div>
+
+    <!-- ACCÈS & RÉFÉRENCES -->
+    <div class="row mb-5">
+        <div class="col-md-6 mb-4 mb-md-0">
+            <div class="card shadow-sm border-0 h-100">
+                <div class="card-body">
+                    <h5 class="fw-bold text-uppercase mb-3">
+                        🚇 Accès en transports
+                    </h5>
+                    {% if sport_site.informations_d_acces_en_transport_en_commun %}
+                        <p>{{ sport_site.informations_d_acces_en_transport_en_commun }}</p>
+                    {% else %}
+                        <p class="text-muted">Informations non disponibles</p>
+                    {% endif %}
+                </div>
+            </div>
+        </div>
+
+        <div class="col-md-6">
+            <div class="card shadow-sm border-0 h-100">
+                <div class="card-body">
+                    <h5 class="fw-bold text-uppercase mb-3">
+                        🗓 Dates de référence
+                    </h5>
+                    {% for date in sport_site.date_s_de_reference.all %}
+                        <span class="badge bg-dark mb-1">{{ date.name }}</span>
+                    {% empty %}
+                        <p class="text-muted">Aucune date renseignée</p>
+                    {% endfor %}
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- FOOTER -->
+    <div class="text-center">
+        <p class="text-muted small mb-3">
+            Crédit : {{ sport_site.credits }}
+        </p>
+
+        <a href="{% url 'sport_site_list' %}"
+           class="btn btn-outline-dark btn-lg text-uppercase fw-bold">
+            ← Retour à la liste
+        </a>
+    </div>
+
+</div>
+
+{% endblock %}
